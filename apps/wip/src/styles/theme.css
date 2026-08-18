@@ -1,0 +1,41 @@
+:root {
+  --font-sans:
+    "Inter Variable", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--font-sans);
+  --color-background: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-text: #141414;
+  --color-muted: #666666;
+  --color-border: #e5e5e5;
+  --color-accent: #141414;
+  --radius: 0.25rem;
+  --content-width: 40rem;
+  --prose-width: 36rem;
+  --app-bg: #f5f5f5;
+  --app-fg: #141414;
+  --app-fg-muted: #666;
+}
+
+html.light {
+  color-scheme: light;
+  --color-background: #f5f5f5;
+  --color-text: #141414;
+  --color-muted: #666666;
+  --app-bg: #f5f5f5;
+  --app-fg: #141414;
+  --app-fg-muted: #666;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-background: #222222;
+  --color-surface: #222222;
+  --color-text: #f5f5f5;
+  --color-muted: #8a8a8a;
+  --color-border: #333333;
+  --color-accent: #f5f5f5;
+  --app-bg: #222222;
+  --app-fg: #f5f5f5;
+  /* #888 measures 4.49:1 on #222 — just under the 4.5:1 AA floor. */
+  --app-fg-muted: #8a8a8a;
+}

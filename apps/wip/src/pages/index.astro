@@ -1,0 +1,18 @@
+---
+import HomeIntro from "~/components/home/HomeIntro.astro";
+import StarMarks from "~/components/home/StarMarks.astro";
+import WorkList from "~/components/home/WorkList.astro";
+import SiteLayout from "~/layouts/SiteLayout.astro";
+---
+
+<SiteLayout>
+  <main>
+    <article class="relative z-40 p-6 pb-24">
+      <div class="max-w-lg grid gap-12">
+        <HomeIntro />
+        <WorkList />
+        <StarMarks />
+      </div>
+    </article>
+  </main>
+</SiteLayout>

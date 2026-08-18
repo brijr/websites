@@ -1,5 +1,5 @@
 {
-  "name": "site",
+  "name": "wip",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -17,6 +17,7 @@
     "@repo/ui": "workspace:*",
     "@tailwindcss/vite": "catalog:",
     "astro": "catalog:",
+    "lenis": "^1.3.23",
     "tailwindcss": "catalog:"
   },
   "devDependencies": {

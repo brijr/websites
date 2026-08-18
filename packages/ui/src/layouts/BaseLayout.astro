@@ -1,6 +1,13 @@
 ---
 import "../styles/tokens.css";
 
+interface SocialImage {
+  url: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -9,6 +16,11 @@ interface Props {
   themeColor?: string;
   robots?: string;
   language?: string;
+  icon?: string;
+  image?: SocialImage;
+  twitterCard?: string;
+  twitterSite?: string;
+  twitterImage?: string;
 }
 
 const {
@@ -19,9 +31,16 @@ const {
   themeColor,
   robots = "index, follow",
   language = "en",
+  icon = "/favicon.svg",
+  image,
+  twitterCard = "summary",
+  twitterSite,
+  twitterImage,
 } = Astro.props;
 
 const canonicalHref = String(canonicalURL);
+const iconType = icon.endsWith(".svg") ? "image/svg+xml" : undefined;
+const twitterImageHref = twitterImage ?? image?.url;
 ---
 
 <!doctype html>
@@ -29,11 +48,12 @@ const canonicalHref = String(canonicalURL);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <slot name="head-start" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     {themeColor && <meta name="theme-color" content={themeColor} />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type={iconType} href={icon} />
     <link rel="canonical" href={canonicalHref} />
     <title>{title}</title>
     <meta property="og:type" content="website" />
@@ -41,9 +61,35 @@ const canonicalHref = String(canonicalURL);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalHref} />
-    <meta name="twitter:card" content="summary" />
+    {
+      image && (
+        <>
+          <meta property="og:image" content={image.url} />
+          {image.width && (
+            <meta property="og:image:width" content={String(image.width)} />
+          )}
+          {image.height && (
+            <meta property="og:image:height" content={String(image.height)} />
+          )}
+          {image.alt && <meta property="og:image:alt" content={image.alt} />}
+        </>
+      )
+    }
+    <meta name="twitter:card" content={twitterCard} />
+    {twitterSite && <meta name="twitter:site" content={twitterSite} />}
+    {twitterSite && <meta name="twitter:creator" content={twitterSite} />}
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {
+      twitterImageHref && (
+        <meta name="twitter:image" content={twitterImageHref} />
+      )
+    }
+    {
+      image?.alt && twitterImageHref && (
+        <meta name="twitter:image:alt" content={image.alt} />
+      )
+    }
     <slot name="head" />
   </head>
   <body>

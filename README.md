@@ -9,7 +9,7 @@ sites with `pnpm site:new`.
 
 ## What is included
 
-- One demo site under `apps/site`
+- The studio site under `apps/wip`
 - A tested `site:new` generator backed by a neutral, buildable template
 - Shared Astro layout, container, prose, and semantic CSS tokens in `@repo/ui`
 - Shared strict Astro TypeScript and Prettier configuration in `@repo/config`
@@ -36,11 +36,11 @@ pnpm dev
 
 That stops leftover Astro servers on those ports, starts every app under
 `apps/`, prints each local URL, and opens those URLs in your default browser.
-The demo is `http://localhost:4321`. Set `DEV_NO_OPEN=1` to skip the browser.
+WIP is `http://localhost:4321`. Set `DEV_NO_OPEN=1` to skip the browser.
 A single site, also opened in the browser, is:
 
 ```bash
-pnpm --filter site dev
+pnpm --filter wip dev
 ```
 
 Run the complete repository gate with:
@@ -79,7 +79,7 @@ After generation:
 
 ```text
 apps/
-  site/                independently deployable Astro site
+  wip/                 independently deployable Astro site
 packages/
   config/              shared TypeScript and formatting config
   ui/                  neutral Astro and CSS primitives

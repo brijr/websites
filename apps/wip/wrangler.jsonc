@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "wip",
+  "compatibility_date": "2026-08-17",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  // Apex is the only hostname this Worker should serve. Aliases (wip.is,
+  // wipdes.com, wip0.com, wip.ad, www) 301 here at the zone / Pages project.
+  // Deploying this route claims the hostname from Pages — do that only at
+  // cutover.
+  "routes": [
+    {
+      "pattern": "wip-design.com",
+      "custom_domain": true,
+    },
+  ],
+}

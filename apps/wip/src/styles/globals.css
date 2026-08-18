@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "./theme.css";
 
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-inter);
+}
+
 /*
   Latin-only Inter variable. `optional` gives the browser a short window to
   use the real file and forbids a later swap, so there is no mid-read flash.
@@ -25,4 +31,47 @@
   ascent-override: 90%;
   descent-override: 22.5%;
   line-gap-override: 0%;
+}
+
+@layer base {
+  html {
+    font-weight: 300;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer utilities {
+  html,
+  body {
+    overscroll-behavior: none;
+    width: 100%;
+    min-height: 100%;
+    background-color: var(--app-bg);
+    cursor: default !important;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  * {
+    cursor: inherit;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    cursor: pointer;
+  }
+
+  canvas {
+    background-color: var(--app-bg);
+  }
 }
