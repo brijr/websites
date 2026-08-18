@@ -1,0 +1,13 @@
+:root {
+  --font-sans:
+    "Inter Variable", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --color-background: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-text: #141414;
+  --color-muted: #666666;
+  --color-border: #e5e5e5;
+  --color-accent: #141414;
+  --radius: 0.25rem;
+  --content-width: 40rem;
+  --prose-width: 36rem;
+}
