@@ -1,0 +1,102 @@
+---
+import interLatin from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import BaseLayout from "@repo/ui/base-layout";
+import Container from "@repo/ui/container";
+
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  THEME_COLOR,
+  X_URL,
+} from "~/lib/constants";
+import "~/styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+}
+
+const { title, description = SITE_DESCRIPTION, robots } = Astro.props;
+const documentTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME;
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
+---
+
+<BaseLayout
+  title={documentTitle}
+  description={description}
+  canonicalURL={canonicalURL}
+  siteName={SITE_NAME}
+  themeColor={THEME_COLOR}
+  robots={robots}
+>
+  <link
+    slot="head"
+    rel="preload"
+    href={interLatin}
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+  <slot name="head" slot="head" />
+  <div class="frame">
+    <header>
+      <Container>
+        <a href="/">{SITE_NAME}</a>
+      </Container>
+    </header>
+    <div class="body">
+      <slot />
+    </div>
+    <footer>
+      <Container>
+        <a href={X_URL} rel="me">Follow on X</a>
+      </Container>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .frame {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  header,
+  footer {
+    padding-block: var(--space-page);
+  }
+
+  header a,
+  footer a {
+    color: var(--color-text);
+    font-size: 0.875rem;
+    text-decoration: none;
+    text-underline-offset: 0.18em;
+  }
+
+  footer a {
+    color: var(--color-muted);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+
+  header a:hover,
+  footer a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-style: solid;
+  }
+
+  header a:focus-visible,
+  footer a:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 3px;
+  }
+
+  .body {
+    flex: 1;
+  }
+</style>
