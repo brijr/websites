@@ -1,0 +1,61 @@
+---
+import BaseLayout from "@repo/ui/base-layout";
+
+import Masthead from "~/components/Masthead.astro";
+import Colophon from "~/components/Colophon.astro";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  THEME_COLOR,
+} from "~/lib/constants";
+import "~/styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+}
+
+const { title, description = SITE_DESCRIPTION, robots } = Astro.props;
+const documentTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME;
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
+---
+
+<BaseLayout
+  title={documentTitle}
+  description={description}
+  canonicalURL={canonicalURL}
+  siteName={SITE_NAME}
+  themeColor={THEME_COLOR}
+  robots={robots}
+>
+  <slot name="head" slot="head" />
+  <Masthead />
+  <slot />
+  <Colophon />
+</BaseLayout>
+
+<script>
+  import Lenis from "lenis";
+  import "lenis/dist/lenis.css";
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  new Lenis({
+    autoRaf: true,
+    duration: prefersReducedMotion ? 0 : 1.1,
+    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: !prefersReducedMotion,
+    anchors: true,
+  });
+
+  const form = document.getElementById("signup-form");
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const section = document.getElementById("subscribe");
+    if (section) section.dataset.state = "success";
+  });
+</script>

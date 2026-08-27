@@ -1,0 +1,22 @@
+---
+import { POSTS } from "~/lib/content";
+---
+
+<section class="posts" id="posts">
+  <div class="row">
+    <h2 class="section-statement">Posts</h2>
+    <ul class="post-list">
+      {
+        POSTS.map((post) => (
+          <li>
+            <a class="card post-card" href={post.href}>
+              <img class="post-image" src={post.image} alt="" loading="lazy" />
+              <span class="post-title">{post.title}</span>
+              <span class="post-date">{post.date}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
