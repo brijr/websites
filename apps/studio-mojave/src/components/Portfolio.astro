@@ -1,0 +1,131 @@
+---
+import LinkIcon from "~/components/LinkIcon.astro";
+import { PROJECTS } from "~/lib/content";
+
+const cardImage =
+  "border rounded hover:mb-1 hover:-mt-1 transition-all shadow w-full";
+---
+
+<div class="grid md:grid-cols-3 gap-4 not-prose">
+  {
+    PROJECTS.map((project, index) => (
+      <div
+        style={`animation-delay:${500 + index * 150}ms`}
+        class="fade-in-bottom"
+      >
+        <button
+          type="button"
+          class="block w-full cursor-zoom-in"
+          data-project
+          data-name={project.name}
+          data-image={project.image}
+          data-href={project.href ?? ""}
+          aria-label={`View ${project.name}`}
+        >
+          <img
+            src={project.image}
+            alt={project.name}
+            width="1080"
+            height="1080"
+            loading="lazy"
+            decoding="async"
+            class={cardImage}
+          />
+        </button>
+        <div class="flex gap-2 items-center justify-between mt-2">
+          <p class="text-sm">{project.name}</p>
+          {project.href && (
+            <a
+              class="flex gap-1 items-center text-sm text-foreground/75 transition-colors hover:text-foreground"
+              href={project.href}
+              target="_blank"
+              rel="noopener"
+            >
+              View
+              <LinkIcon />
+              <span class="sr-only">Link to {project.name}</span>
+            </a>
+          )}
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<dialog
+  id="project-modal"
+  class="m-auto w-[90vw] max-w-lg rounded-lg border bg-card p-0 text-card-foreground shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm"
+>
+  <div class="p-4 sm:p-6">
+    <img
+      id="modal-image"
+      src=""
+      alt=""
+      width="1080"
+      height="1080"
+      class="w-full rounded border shadow"
+    />
+    <div class="flex gap-2 items-center justify-between mt-4">
+      <p id="modal-name" class="text-sm"></p>
+      <div class="flex gap-3 items-center">
+        <a
+          id="modal-link"
+          class="flex gap-1 items-center text-sm text-foreground/75 transition-colors hover:text-foreground"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          hidden
+        >
+          View
+          <LinkIcon />
+        </a>
+        <button
+          id="modal-close"
+          type="button"
+          class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.getElementById(
+    "project-modal",
+  ) as HTMLDialogElement | null;
+  const image = document.getElementById(
+    "modal-image",
+  ) as HTMLImageElement | null;
+  const name = document.getElementById("modal-name");
+  const link = document.getElementById(
+    "modal-link",
+  ) as HTMLAnchorElement | null;
+  const close = document.getElementById("modal-close");
+
+  if (modal && image && name && link && close) {
+    for (const button of document.querySelectorAll<HTMLButtonElement>(
+      "[data-project]",
+    )) {
+      button.addEventListener("click", () => {
+        image.src = button.dataset.image ?? "";
+        image.alt = button.dataset.name ?? "";
+        name.textContent = button.dataset.name ?? "";
+        const href = button.dataset.href;
+        if (href) {
+          link.href = href;
+          link.hidden = false;
+        } else {
+          link.hidden = true;
+        }
+        modal.showModal();
+      });
+    }
+
+    close.addEventListener("click", () => modal.close());
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) modal.close();
+    });
+  }
+</script>
