@@ -6,6 +6,7 @@ export const SITE_DESCRIPTION =
 export const SITE_URL = "https://studiomojave.com";
 export const THEME_COLOR = "#ffffff";
 
+export const WORK_WITH_URL = "https://tally.so/r/wa0zP9";
 export const STUDIO_URL = "https://bridger.to";
 export const DESIGNER_NAME = "Zion";
 export const DESIGNER_URL = "https://zion.surf";
