@@ -1,0 +1,12 @@
+{
+  "name": "Astro Cloudflare Monorepo",
+  "install": "pnpm install --frozen-lockfile",
+  "terminals": [
+    {
+      "name": "pnpm dev",
+      "command": "DEV_NO_OPEN=1 pnpm dev",
+      "description": "Runs every app under apps/ with astro dev. WIP is at http://localhost:4321."
+    }
+  ],
+  "ports": [{ "name": "wip dev server", "port": 4321 }]
+}
