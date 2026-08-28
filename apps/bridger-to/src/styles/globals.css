@@ -71,7 +71,7 @@
   *,
   ::after,
   ::before {
-    border-color: var(--color-border);
+    border-color: var(--border);
   }
 
   html {
@@ -80,8 +80,8 @@
 
   body {
     min-height: 100vh;
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-sans);
     line-height: 1.25;
     -webkit-font-smoothing: antialiased;
