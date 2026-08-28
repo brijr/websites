@@ -5,7 +5,12 @@ export const SITE_DESCRIPTION =
 export const SITE_URL = "https://bridger.to";
 export const THEME_COLOR = "#ffffff";
 
-export const ROLE = "Design Generalist";
+export const ROLES = [
+  "Design Generalist",
+  "Software Engineer",
+  "Technical Entrepreneur",
+  "Marketing Developer",
+];
 export const TAGLINE =
   "Designer and software engineer focused on how design shapes product, AI, marketing, and human-computer interaction. I bring a background in marketing and branding to building thoughtful software that solves real problems and helps products grow.";
 
