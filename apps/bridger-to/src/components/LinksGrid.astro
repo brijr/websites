@@ -1,0 +1,42 @@
+---
+import Icon from "~/components/Icon.astro";
+import { NAV_LINKS, SOCIAL_LINKS } from "~/lib/content";
+
+const itemClass =
+  "flex items-center gap-1.5 hover:text-primary group bg-background p-2 rounded";
+---
+
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 gap-0.5 bg-muted dark:bg-muted/50 p-0.5 rounded"
+>
+  <div class="grid gap-0.5">
+    {
+      NAV_LINKS.map((link) => (
+        <a class={itemClass} href={link.href}>
+          <Icon
+            name="arrow-up-right"
+            class="sm:hidden group-hover:rotate-45 transition-transform duration-400"
+          />
+          <Icon
+            name="arrow-down-right"
+            class="hidden sm:block group-hover:-rotate-45 transition-transform duration-400"
+          />
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+  <div class="grid gap-0.5">
+    {
+      SOCIAL_LINKS.map((link) => (
+        <a class={itemClass} href={link.href} target="_blank" rel="noopener">
+          <Icon
+            name="arrow-up-right"
+            class="group-hover:rotate-45 transition-transform duration-400"
+          />
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+</div>

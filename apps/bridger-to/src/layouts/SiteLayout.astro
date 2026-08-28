@@ -1,0 +1,78 @@
+---
+import BaseLayout from "@repo/ui/base-layout";
+import "@fontsource-variable/inter-tight";
+
+import CopyEmail from "~/components/CopyEmail.astro";
+import Logo from "~/components/Logo.astro";
+import SiteFooter from "~/components/SiteFooter.astro";
+import ThemeToggle from "~/components/ThemeToggle.astro";
+import WorkWithMe from "~/components/WorkWithMe.astro";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+  THEME_COLOR,
+} from "~/lib/constants";
+import "~/styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+}
+
+const { title, description = SITE_DESCRIPTION, robots } = Astro.props;
+const documentTitle = title ? `${title} · ${SITE_NAME}` : SITE_TITLE;
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
+---
+
+<BaseLayout
+  title={documentTitle}
+  description={description}
+  canonicalURL={canonicalURL}
+  siteName={SITE_NAME}
+  themeColor={THEME_COLOR}
+  robots={robots}
+  icon="/favicon.ico"
+>
+  <script slot="head-start" is:inline>
+    (() => {
+      let stored = null;
+      try {
+        stored = localStorage.getItem("theme");
+      } catch {}
+      const theme =
+        stored === "light" || stored === "dark"
+          ? stored
+          : window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+      document.documentElement.classList.add(theme);
+    })();
+  </script>
+  <slot name="head" slot="head" />
+
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-background focus:px-3 focus:py-2 focus:rounded"
+  >
+    Skip to content
+  </a>
+  <Logo />
+  <CopyEmail />
+
+  <main class="flex-1 scroll-mt-24 py-18 sm:py-12 px-2" id="main">
+    <slot />
+  </main>
+
+  <ThemeToggle />
+  <WorkWithMe />
+  <SiteFooter />
+</BaseLayout>
+
+<script>
+  import { initTheme } from "~/lib/theme";
+
+  initTheme();
+</script>

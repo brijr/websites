@@ -1,0 +1,19 @@
+---
+import { PHOTO_ALT } from "~/lib/constants";
+---
+
+<div class="relative aspect-3/2 w-full rounded overflow-hidden">
+  <img
+    src="/salt.webp"
+    alt={PHOTO_ALT}
+    width="1200"
+    height="800"
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 rounded ring-1 ring-inset ring-black/8 dark:ring-white/8"
+  ></span>
+</div>
