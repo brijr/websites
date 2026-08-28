@@ -8,7 +8,7 @@ export default defineConfig({
   site: SITE_URL,
   output: "static",
   server: {
-    port: 4323,
+    port: 4324,
   },
   integrations: [sitemap()],
   vite: {

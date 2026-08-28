@@ -1,0 +1,26 @@
+---
+import { CONTACT_HREF, SITE_NAME } from "~/lib/constants";
+---
+
+<section>
+  <div class="max-w-2xl mx-auto p-4 sm:p-6 border-x !p-0">
+    <div class="px-4 py-4 sm:px-6 sm:py-6">
+      <h1 class="text-6xl font-serif uppercase">{SITE_NAME}</h1>
+      <h2>Systems, interfaces, intelligence</h2>
+      <h3 class="text-muted-foreground">
+        I design and build for founders — new products and the features that
+        move them forward. Brand, interface, code.
+      </h3>
+      <a class="block" href={CONTACT_HREF}>Let's build something →</a>
+    </div>
+    <img
+      src="/hero.jpeg"
+      alt="Hero Image"
+      width="1084"
+      height="725"
+      loading="eager"
+      decoding="async"
+      class="aspect-video object-cover"
+    />
+  </div>
+</section>
