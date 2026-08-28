@@ -1,0 +1,32 @@
+---
+import Header from "~/components/Header.astro";
+import LinksGrid from "~/components/LinksGrid.astro";
+import Photo from "~/components/Photo.astro";
+import Subscribe from "~/components/Subscribe.astro";
+import SiteLayout from "~/layouts/SiteLayout.astro";
+import { TAGLINE } from "~/lib/constants";
+---
+
+<SiteLayout>
+  <Header />
+  <section class="py-2 sm:py-4">
+    <div class="max-w-2xl mx-auto p-4 sm:p-6 space-y-8">
+      <div class="space-y-8">
+        <div class="blur-entrance-content" style="animation-delay:0ms">
+          <div class="text-pretty space-y-3">
+            <h2>{TAGLINE}</h2>
+          </div>
+        </div>
+        <div class="blur-entrance-content" style="animation-delay:100ms">
+          <LinksGrid />
+        </div>
+        <div class="blur-entrance-content" style="animation-delay:200ms">
+          <Photo />
+        </div>
+        <div class="blur-entrance-content" style="animation-delay:300ms">
+          <Subscribe />
+        </div>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

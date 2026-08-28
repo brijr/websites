@@ -1,0 +1,57 @@
+---
+import Icon from "~/components/Icon.astro";
+import { CONTACT_EMAIL } from "~/lib/constants";
+
+const buttonClass =
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-[background-color,color,border-color,scale] duration-200 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 fixed top-6 right-6 z-50 cursor-pointer";
+---
+
+<button
+  type="button"
+  data-copy-email
+  data-email={CONTACT_EMAIL}
+  aria-label="Copy email address"
+  class={buttonClass}
+>
+  <span class="relative size-[1.2rem]">
+    <Icon
+      name="mail"
+      class="mail-icon absolute inset-0 size-[1.2rem] transition-[opacity,transform,filter] duration-200 ease-out"
+    />
+    <Icon
+      name="check"
+      class="check-icon absolute inset-0 size-[1.2rem] scale-[0.25] opacity-0 blur-[4px] transition-[opacity,transform,filter] duration-200 ease-out"
+    />
+  </span>
+  <span class="sr-only">Copy email</span>
+</button>
+
+<style>
+  [data-copy-email].copied .mail-icon {
+    scale: 0.25;
+    opacity: 0;
+    filter: blur(4px);
+  }
+  [data-copy-email].copied .check-icon {
+    scale: 1;
+    opacity: 1;
+    filter: blur(0);
+  }
+</style>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>(
+    "[data-copy-email]",
+  )) {
+    button.addEventListener("click", async () => {
+      const email = button.dataset.email ?? "";
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        // Clipboard may be unavailable; still show feedback.
+      }
+      button.classList.add("copied");
+      window.setTimeout(() => button.classList.remove("copied"), 1500);
+    });
+  }
+</script>
