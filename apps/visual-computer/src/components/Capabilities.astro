@@ -1,0 +1,19 @@
+---
+import { CAPABILITIES } from "~/lib/content";
+---
+
+<section class="capabilities" id="capabilities">
+  <div class="row">
+    <h2 class="section-statement">We make four kinds of software.</h2>
+    <ul class="grid">
+      {
+        CAPABILITIES.map((capability) => (
+          <li class="card">
+            <h3>{capability.title}</h3>
+            <p>{capability.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+import { CLIENTS } from "~/lib/content";
+---
+
+<section class="clients" id="clients">
+  <div class="row">
+    <h2 class="section-statement">Selected clients</h2>
+    <ul class="client-list">
+      {
+        CLIENTS.map((client) => (
+          <li>
+            <div class="client-row">
+              <div class="client-info">
+                <span class="client-name">{client.name}</span>
+                <span class="client-role">{client.role}</span>
+              </div>
+              <div class="client-actions">
+                {client.visit && (
+                  <a
+                    class="client-action"
+                    href={client.visit}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Visit
+                  </a>
+                )}
+                <a class="client-action" href={`/work/${client.slug}`}>
+                  Read more
+                </a>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

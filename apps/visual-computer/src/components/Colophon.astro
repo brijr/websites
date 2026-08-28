@@ -1,0 +1,33 @@
+---
+import {
+  AUTHOR_NAME,
+  AUTHOR_URL,
+  CONTACT_EMAIL,
+  SITE_NAME,
+} from "~/lib/constants";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="colophon">
+  <div class="row">
+    <div class="card colophon-card">
+      <a class="colophon-mark" href="/">{SITE_NAME}</a>
+      <nav class="colophon-nav" aria-label="Footer">
+        <a href="#capabilities">Practice</a>
+        <a href="#clients">Clients</a>
+        <a href="#posts">Posts</a>
+        <a href="#subscribe">Subscribe</a>
+      </nav>
+      <a class="colophon-email" href={`mailto:${CONTACT_EMAIL}`}>
+        {CONTACT_EMAIL}
+      </a>
+      <div class="colophon-meta">
+        <span>© {year} {SITE_NAME}</span>
+        <a href={AUTHOR_URL} target="_blank" rel="noopener">
+          By {AUTHOR_NAME}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
