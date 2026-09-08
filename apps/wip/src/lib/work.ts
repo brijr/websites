@@ -19,6 +19,8 @@ export const WORK_ITEMS: WorkItem[] = [
   { company: "Advocate Media", href: "https://advocatemedia.com" },
   { company: "Offer Arc", href: "https://offerarc.com" },
   { company: "Alpine Codex", href: "https://alpinecodex.com" },
+  { company: "Strive", href: "https://strivepharmacy.com" },
+  { company: "RxVortex", href: "http://rxvortex.com" },
 ];
 
 export const PROJECT_ITEMS: WorkItem[] = [
