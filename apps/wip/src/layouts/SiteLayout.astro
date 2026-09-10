@@ -34,7 +34,7 @@ const { title, description = SITE_DESCRIPTION, robots } = Astro.props;
 const documentTitle = title ? `${title} · ${SITE_NAME}` : SITE_TITLE;
 const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
 const ogImageUrl = `${SITE_URL}${OG_IMAGE_PATH}`;
-const imageAlt = "WIP — Design and Engineering Studio by Bridger Tower";
+const imageAlt = "WIP Design Studio by Bridger Tower";
 
 const structuredData = {
   "@context": "https://schema.org",
