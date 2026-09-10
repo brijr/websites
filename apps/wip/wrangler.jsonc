@@ -11,13 +11,12 @@
   "observability": {
     "enabled": true,
   },
-  // Apex is the only hostname this Worker should serve. Aliases (wip.is,
-  // wipdes.com, wip0.com, wip.ad, www) 301 here at the zone / Pages project.
-  // Deploying this route claims the hostname from Pages — do that only at
-  // cutover.
+  // Apex is the only hostname this Worker should serve. Aliases (wip-design.com,
+  // wip.is, wipdes.com, wip0.com, wip.ad, www) 301 here at the zone / Pages
+  // project. Deploying this route claims the hostname — do that only at cutover.
   "routes": [
     {
-      "pattern": "wip-design.com",
+      "pattern": "wipds.com",
       "custom_domain": true,
     },
   ],
