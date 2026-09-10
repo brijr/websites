@@ -1,23 +1,28 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "wip",
+  "main": "worker.ts",
   "compatibility_date": "2026-08-17",
   "workers_dev": true,
   "preview_urls": true,
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
+    "run_worker_first": true,
   },
   "observability": {
     "enabled": true,
   },
-  // Apex is the only hostname this Worker should serve. Aliases (wip-design.com,
-  // wip.is, wipdes.com, wip0.com, wip.ad, www) 301 here at the zone / Pages
-  // project. Deploying this route claims the hostname — do that only at cutover.
+  // Canonical host is wipds.com. Other apex aliases stay attached so the
+  // Worker can 301 them to SITE_URL. Deploying a custom_domain claims the
+  // hostname — do that only at cutover.
   "routes": [
-    {
-      "pattern": "wipds.com",
-      "custom_domain": true,
-    },
+    { "pattern": "wipds.com", "custom_domain": true },
+    { "pattern": "wip-design.com", "custom_domain": true },
+    { "pattern": "wip.is", "custom_domain": true },
+    { "pattern": "wipdes.com", "custom_domain": true },
+    { "pattern": "wip0.com", "custom_domain": true },
+    { "pattern": "wip.ad", "custom_domain": true },
   ],
 }
